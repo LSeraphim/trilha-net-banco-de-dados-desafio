@@ -325,3 +325,32 @@ REFERENCES [dbo].[Generos] ([Id])
 GO
 ALTER TABLE [dbo].[FilmesGenero] CHECK CONSTRAINT [FK__FilmesGen__IdGen__2E1BDC42]
 GO
+
+
+-- 1
+SELECT Nome, Ano FROM Filmes;
+
+-- 2
+SELECT Nome, Ano FROM Filmes ORDER BY Ano asc;
+
+--3
+SELECT Nome, Ano, Duracao FROM Filmes WHERE Nome = 'De volta para o Futuro';
+
+--4
+SELECT * FROM Filmes WHERE Ano = 1997;
+
+--5
+SELECT * FROM Filmes WHERE Ano > 2000;
+
+--6
+SELECT * FROM Filmes 
+WHERE Duracao > 100 AND Duracao < 150 
+ORDER BY Duracao ASC;
+
+--7 Corrigir!
+SELECT ano, COUNT(*) FROM Filmes GROUP BY Ano ORDER BY Duracao DESC;
+
+
+
+--8
+SELECT primeiroNome, ultimoNome FROM Atores WHERE genero = 'M';
