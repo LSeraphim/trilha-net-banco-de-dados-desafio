@@ -326,7 +326,6 @@ GO
 ALTER TABLE [dbo].[FilmesGenero] CHECK CONSTRAINT [FK__FilmesGen__IdGen__2E1BDC42]
 GO
 
-
 -- 1
 SELECT Nome, Ano FROM Filmes;
 
@@ -348,9 +347,32 @@ WHERE Duracao > 100 AND Duracao < 150
 ORDER BY Duracao ASC;
 
 --7 Corrigir!
-SELECT ano, COUNT(*) FROM Filmes GROUP BY Ano ORDER BY Duracao DESC;
-
-
+SELECT Ano, COUNT(*) AS Quantidade_de_Filmes FROM Filmes GROUP BY Ano ORDER BY Quantidade_de_Filmes DESC;
 
 --8
 SELECT primeiroNome, ultimoNome FROM Atores WHERE genero = 'M';
+
+--9
+SELECT PrimeiroNome, UltimoNome 
+FROM Atores 
+WHERE Genero = 'F' 
+ORDER BY PrimeiroNome;
+
+--10
+SELECT Filmes.Nome AS Nome_do_Filme, Generos.Genero AS Genero
+FROM Filmes
+JOIN FilmesGenero ON Filmes.Id = FilmesGenero.IdFilme
+JOIN Generos ON FilmesGenero.IdGenero = Generos.Id;
+
+--11
+SELECT Filmes.Nome AS Nome_do_Filme, Generos.Genero AS Genero
+FROM Filmes
+JOIN FilmesGenero ON Filmes.Id = FilmesGenero.IdFilme
+JOIN Generos ON FilmesGenero.IdGenero = Generos.Id
+WHERE Generos.Genero = 'Mistério';
+
+--12
+SELECT Filmes.Nome AS Nome_do_Filme, Atores.PrimeiroNome, Atores.UltimoNome, ElencoFilme.Papel
+FROM Filmes
+JOIN ElencoFilme ON Filmes.Id = ElencoFilme.IdFilme
+JOIN Atores ON ElencoFilme.IdAtor = Atores.Id;
